@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <!--Just paste this into your index.html, don't worry (today) about what happens-->
+        <h1>Add a Car</h1>
+        <form >
+            <input id="make" placeholder="make"/>
+            <input id="price" placeholder="Price"/>
+            <input id="year" placeholder="year"/>
+            <button id="btn">Save</button>            
+        </form>
+        <br/>
+        <p id='status'></p>
+        <script>
+            document.getElementById("btn").onclick = save;
+            function save(e) {
+                e.preventDefault();
+                const PATH = "api/car";
+                const make = document.getElementById("make").value;
+                const price = document.getElementById("price").value;
+                const year = document.getElementById("year").value;
+                let car = {make, price, year};
+            
+                fetch(PATH, {
+                    method: "post",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(car)
+                }).then(r => r.json())
+                        .then(d => document.getElementById("status").innerHTML="Saved: "+d.make)
+                        .catch(e => alert("UPPS, something went wrong" + e));
+            }
+        </script>
+
+
+
+    </body>
+</html>
