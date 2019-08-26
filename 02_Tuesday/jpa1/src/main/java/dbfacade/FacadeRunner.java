@@ -20,9 +20,9 @@ public class FacadeRunner {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
         BookFacade facade = BookFacade.getBookFacade(emf);
         
-        Book b1 = facade.addBook("Ole Olsen");
-        Book b2 = facade.addBook("Jønke");
-        Book b3 = facade.addBook("Svend Svin");
+        Book b1 = facade.addBook("title 1", "Ole Olsen");
+        Book b2 = facade.addBook("title 2", "Jønke");
+        Book b3 = facade.addBook("title 3", "Svend Svin");
         
         List<Book> books = facade.getAllBooks();
         
